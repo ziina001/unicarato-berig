@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title></title>
+    <style>
+        body{
+            background-color: black;
+            color: rgb(0, 255, 0);
+        }
+        .father{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+        .head h1{
+            font-family:monospace;
+            font-size: 45px;
+        }
+        .body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .body div{
+            margin-top: 20px;
+        }
+        button{
+            margin-right: 20px;
+        }
+        #unb{
+            background-color: greenyellow;
+        }
+        #b{
+            background-color: red;
+        }
+        .bad{
+            color: red;
+        }
+        .good{
+            color: rgb(130, 255, 14);
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="head">
+            <h1>CHULDA BLOCKER</h1>
+        </div>
+        <div class="body">
+            <div class="inp">
+                <input type="text" id="ip">
+            </div>
+            <div class="btns">
+                <button id="unb" type="button">UnBlock</button>
+                <button id="b" type="button">Block</button>
+            </div>
+        </div>
+        <div class="foot">
+            <ul></ul>
+        </div>
+    </div>
+    <!-- CHULDA Script -->
+    <script>
+        $("#unb").on("click",()=>{
+            let ip = $("#ip").val();
+            if(ip != ""){
+                $.ajax({
+                url: '/chulda',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({type:"unblock",ip}),
+                success: function(info) {
+                    if(info.OK){
+                        $("ul").prepend(`<li class="${info.type}">${ip}</li>`);
+                    }
+                }
+                });
+            }
+            });
+            $("#b").on("click",()=>{
+            let ip = $("#ip").val();
+            if(ip != ""){
+                $.ajax({
+                url: '/chulda',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({type:"block",ip}),
+                success: function(info) {
+                    if(info.OK){
+                    $("ul").prepend(`<li class="${info.type}">${ip}</li>`);
+                    }
+                }
+        
+            });
+            }
+        });
+    </script>
+</body>
+</html>

